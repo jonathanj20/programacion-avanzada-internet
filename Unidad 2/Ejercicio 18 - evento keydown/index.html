@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="600" height="600"></canvas>
+    <img src="imagen.png" id="img">
+    <style>
+        #miCanvas {
+            background-color: #b3bdd5;
+            margin: 10px;
+        }
+
+        #img {
+            display: none;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        document.addEventListener("keydown", (e) => {
+            console.log(e);
+            ctx.fillStyle = randomColor();
+            ctx.fillRect(numeroAleatorio(),numeroAleatorio(),50,50);
+        });
+
+        function numeroAleatorio(){
+            return Math.floor(Math.random() * (500 - 0 + 1) + 0);
+        } 
+
+        function randomColor(){
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+        }
+     </script>
+</body> 
+</html>
