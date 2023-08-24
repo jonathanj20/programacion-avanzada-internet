@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas">Canvas no está disponible para tu navegador</canvas>
+    <style>
+        #miCanvas{
+            width: 600px;
+            height: 600px;
+            border: 2px solid #000;
+            background: #c8c7cf;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+        let x = 20, y = 20;
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(x, y, 40, 20);
+        document.addEventListener("keydown",(e) => {
+            console.log(e);
+            console.log(e.keyCode);
+            
+            
+            switch(e.keyCode){
+                case 39:
+                    x+=5;
+                    ctx.fillStyle = randomColor();
+                    ctx.fillRect(x, y, 40, 20);
+                    //derecha
+                    break;
+                case 37:
+                    x-=5;
+                    ctx.fillStyle = randomColor();
+                    ctx.fillRect(x, y, 40, 20);
+                    //izquierda
+                    break;
+                case 38:
+                    y-=5;
+                    ctx.fillStyle = randomColor();
+                    ctx.fillRect(x, y, 40, 20);
+                    //arriba
+                    break;
+                case 40:
+                    y+=5;
+                    ctx.fillStyle = randomColor();
+                    ctx.fillRect(x, y, 40, 20);
+                    //abajo
+                    break;
+            }
+        });
+
+        function randomColor(){
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+        }
+    </script>
+</body>
+</html>
