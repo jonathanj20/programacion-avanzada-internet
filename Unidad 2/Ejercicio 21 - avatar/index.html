@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas"></canvas>
+    <style>
+        #miCanvas{
+            border: 2px solid#000;
+            width: 700px;
+            height:400px;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        //cabeza
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.arc(150,40,19,0,2*Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        //ojos
+        ctx.beginPath();
+        ctx.fillStyle = 'black';
+        ctx.arc(141,35,4,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'black';
+        ctx.arc(158,35,4,0,2*Math.PI);
+        ctx.fill();
+
+        //circulo de los ojos, blancos
+        ctx.beginPath();
+        ctx.fillStyle = '#fff';
+        ctx.arc(143,34,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#fff';
+        ctx.arc(156,34,2,0,2*Math.PI);
+        ctx.fill();
+
+        //naríz
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(150,42,1.5,0,2*Math.PI);
+        ctx.fill();
+
+        //cachetes
+        ctx.beginPath();
+        ctx.fillStyle = '#e92929';
+        ctx.arc(138,45,4,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#e92929';
+        ctx.arc(162,45,4,0,2*Math.PI);
+        ctx.fill();
+
+        //boca
+        ctx.beginPath();
+        ctx.fillStyle = '#FA8072';
+        ctx.arc(150,47,5,0,3);
+        ctx.fill();
+
+        //oreja1
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(140,24);
+        ctx.lineTo(133,30);
+        ctx.lineTo(120,15);
+        ctx.lineTo(140,25);
+        ctx.fill();
+        ctx.stroke();
+
+        //parte negra de la oreja 1
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.moveTo(130,20);
+        ctx.lineTo(127,22);
+        ctx.lineTo(118,13);
+        ctx.fill();
+        ctx.stroke();
+        
+        //oreja2
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(160,24);
+        ctx.lineTo(166,28);
+        ctx.lineTo(181,13);
+        ctx.lineTo(160,24);
+        ctx.fill();
+        ctx.stroke();
+
+        //parte negra de la oreja 2
+        ctx.beginPath();
+        ctx.fillStyle = '#000'
+        ctx.moveTo(170,19);
+        ctx.lineTo(172, 21);
+        ctx.lineTo(179,15);
+        ctx.fill();
+        ctx.stroke();
+
+        //cuerpo
+        ctx.fillStyle = '#ffe62d';
+        ctx.strokeStyle = '#000000';
+        ctx.fillRect(135,59,30,37);
+        ctx.strokeRect(135,59,30,37);
+
+        //brazo 1
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(135,73);
+        ctx.lineTo(110,60);
+        ctx.lineTo(105,65);
+        ctx.lineTo(135,80);
+        ctx.lineTo(135,73);
+        ctx.fill();
+        ctx.stroke();
+
+        //dedos del brazo 1
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(105,65);
+        ctx.lineTo(102,62);
+        ctx.lineTo(107,62);
+        ctx.lineTo(104,58);
+        ctx.lineTo(110,60);
+        ctx.fill();
+        ctx.stroke();
+
+        //brazo 2
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(165,75);
+        ctx.lineTo(190,58);
+        ctx.lineTo(195,65);
+        ctx.lineTo(165,80);
+        ctx.lineTo(165,75);
+        ctx.fill();
+        ctx.stroke();
+
+        //dedos del brazo 2
+        ctx.beginPath();
+        ctx.fillStyle = 'ffe62d';
+        ctx.moveTo(190,59);
+        ctx.lineTo(195,58);
+        ctx.lineTo(193,61);
+        ctx.lineTo(197,61);
+        ctx.lineTo(195,64);
+        ctx.fill();
+        ctx.stroke();
+
+        //cola
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(165,85);
+        ctx.lineTo(180,87);
+        ctx.lineTo(180,81);
+        ctx.lineTo(190,81);
+        ctx.lineTo(190,70);
+        ctx.lineTo(210,72);
+        ctx.lineTo(210,78);
+        ctx.lineTo(200,78);
+        ctx.lineTo(200,86);
+        ctx.lineTo(188,85);
+        ctx.lineTo(188,95);
+        ctx.lineTo(165,90);
+        ctx.lineTo(165,85);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#5c3613';
+        ctx.moveTo(165,85);
+        ctx.lineTo(180,87);
+        ctx.lineTo(180,84);
+        ctx.lineTo(188,86);
+        ctx.lineTo(188,95);
+        ctx.lineTo(165,90);
+        ctx.lineTo(165,85);
+        ctx.fill();
+        ctx.stroke();
+
+        //pata 1
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(145,95);
+        ctx.lineTo(145,110);
+        ctx.lineTo(125,110);
+        ctx.lineTo(125,105);
+        ctx.lineTo(140,105);
+        ctx.lineTo(140,96);
+        ctx.lineTo(145,96);
+        ctx.fill();
+        ctx.stroke();
+
+        //pata 2
+        ctx.beginPath();
+        ctx.fillStyle = '#ffe62d';
+        ctx.moveTo(155,95);
+        ctx.lineTo(155,110);
+        ctx.lineTo(175,110);
+        ctx.lineTo(175,105);
+        ctx.lineTo(160,105);
+        ctx.lineTo(160,96);
+        ctx.lineTo(155,96);
+        ctx.fill();
+        ctx.stroke();
+
+
+        //texto
+        ctx.fillStyle = '#edba3a';
+        ctx.font = '20px Arial';
+        ctx.fillText('Pikachu',115,135);
+
+        ctx.fillStyle = '#000';
+        ctx.font = '10px Arial';
+        ctx.fillText('Jonathan Posada',10, 12);
+    </script>
+</body>
+</html>
