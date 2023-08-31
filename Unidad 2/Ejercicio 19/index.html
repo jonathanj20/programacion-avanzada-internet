@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <canvas id="miCanvas">Canvas no está disponible para tu navegador</canvas>
     <style>
-        #miCanvas{
+        #miCanvas {
             width: 600px;
             height: 600px;
             border: 2px solid #000;
@@ -18,44 +20,85 @@
     <script>
         const canvas = document.getElementById('miCanvas');
         const ctx = canvas.getContext('2d');
-        let x = 20, y = 20;
+        let x = 20, y = 20, dir = 0, w=20, h=10;
+        let t_x = 50, t_y=50, t_w=10, t_h=5;
 
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(x, y, 40, 20);
-        document.addEventListener("keydown",(e) => {
-            console.log(e);
-            console.log(e.keyCode);
-            
-            ctx.fillStyle = '#EDEDED';
-            ctx.fillRect(0,0,600,600);
-            
-            switch(e.keyCode){
+        document.addEventListener("keydown", (e) => {
+            switch (e.keyCode) {
                 case 39:
-                    x+=5;
-                    ctx.fillStyle = getRandomColor();
-                    ctx.fillRect(x, y, 40, 20);
+                    dir = e.keyCode;
                     //derecha
                     break;
                 case 37:
-                    x-=5;
-                    ctx.fillStyle = getRandomColor();
-                    ctx.fillRect(x, y, 40, 20);
+                    dir = e.keyCode;
                     //izquierda
                     break;
                 case 38:
-                    y-=5;
-                    ctx.fillStyle = getRandomColor();
-                    ctx.fillRect(x, y, 40, 20);
+                    dir = e.keyCode;
                     //arriba
                     break;
                 case 40:
-                    y+=5;
-                    ctx.fillStyle = getRandomColor();
-                    ctx.fillRect(x, y, 40, 20);
+                    dir = e.keyCode;
                     //abajo
                     break;
             }
+
+            //update();
         });
+
+        function update() {
+            switch (dir) {
+                case 39:
+                    x += 3;
+                    if (x > 550) { x = -50; };
+                    //if(y < -50){ y = 600; }
+                    //ctx.fillStyle = getRandomColor();
+                    //ctx.fillRect(x, y, 40, 20);
+                    //derecha
+                    break;
+                case 37:
+                    x -= 3;
+                    if (x < -50) { x = 550; };
+                    //ctx.fillStyle = getRandomColor();
+                    //ctx.fillRect(x, y, 40, 20);
+                    //izquierda
+                    break;
+                case 38:
+                    y -= 3;
+                    if (y < -50) { y = 550; };
+                    //ctx.fillStyle = getRandomColor();
+                    //ctx.fillRect(x, y, 40, 20);
+                    //arriba
+                    break;
+                case 40:
+                    y += 3;
+                    if (y > 550) { y = -50; };
+                    //ctx.fillStyle = getRandomColor();
+                    //ctx.fillRect(x, y, 40, 20);
+                    //abajo
+                    break;
+            }
+
+            repaint();
+            window.requestAnimationFrame(update);
+        }
+
+        function repaint() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, 600, 600);
+            ctx.fillStyle = getRandomColor();
+            ctx.fillRect(x, y, w, h);
+            ctx.strokeRect(x, y, w, h);
+
+            ctx.fillStyle = '#000';
+            ctx.fillRect(t_x,t_y,t_w,t_h);
+
+            if(x < t_x + t_w &&  x + w > t_x && y < t_y + t_h && y + h > t_y){ 
+                t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
+                t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
+            }
+        }
+        
 
         function getRandomColor() {
             const r = Math.floor(Math.random() * 256); // Valor de rojo entre 0 y 255
@@ -65,6 +108,23 @@
 
             return `rgba(${r},${g},${b},${alpha})`;
         }
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+        window.requestAnimationFrame(update);
+
+        function pintarCuadro(){
+            ctx.fillStyle = '#000';
+            ctx.fillRect(Math.floor(Math.random() * (290 - 0 + 1) + 0),Math.floor(Math.random() * (145 - 0 + 1) + 0),10,5);
+        }
     </script>
 </body>
+
 </html>
