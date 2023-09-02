@@ -22,6 +22,12 @@
         const ctx = canvas.getContext('2d');
         let x = 20, y = 20, dir = 0, w=20, h=10;
         let t_x = 50, t_y=50, t_w=10, t_h=5;
+        let m_x = 70, m_y=20, m_w=160, m_h=10;
+        let oldX = 0, oldY = 0;
+
+        //esta variable es para detectar cuando está tocando el muro
+        let tocaMuro = false;
+        
 
         document.addEventListener("keydown", (e) => {
             switch (e.keyCode) {
@@ -43,6 +49,10 @@
                     break;
             }
 
+            // oldX = x;
+            // oldY = y;
+            // console.log(oldX);
+            // console.log(oldY);
             //update();
         });
 
@@ -79,6 +89,13 @@
                     break;
             }
 
+            /*constantemente se estará verificando si el cuadrito está tocando el muro,
+            si no lo toca estará guardando las coordenadas en una variable*/
+            if(!tocaMuro){
+                oldX = x;
+                oldY = y;
+            }
+
             repaint();
             window.requestAnimationFrame(update);
         }
@@ -97,8 +114,20 @@
                 t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
                 t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
             }
+
+            //muro
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(m_x,m_y,m_w,m_h);
+
+            //cuando toca el muro, las posiciones originales serán las que eran antes de tocar el muro
+            if(x < m_x + m_w &&  x + w > m_x && y < m_y + m_h && y + h > m_y){
+                tocaMuro = true;
+                x=oldX;
+                y=oldY;
+            } else{
+                tocaMuro = false;
+            }
         }
-        
 
         function getRandomColor() {
             const r = Math.floor(Math.random() * 256); // Valor de rojo entre 0 y 255
