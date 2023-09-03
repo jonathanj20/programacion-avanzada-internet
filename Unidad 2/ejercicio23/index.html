@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="750" height="500"></canvas>
+    <img src="mario-removebg-preview.png" id="mario">
+    <img src="planta_carnivora.png" id="plantaCarnivora">
+    <style>
+        #miCanvas{
+            border: 2px solid #000;
+            margin: 1em auto;
+            display: block;
+        }
+
+        img{
+            display: none;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+        const mario = document.getElementById('mario');
+        const plantaCarnivora = document.getElementById('plantaCarnivora');
+        
+        //cielo
+        ctx.fillStyle = '#b5edfe';
+        ctx.fillRect(0, 0, 750, 500);
+
+        //imagen de la planta carnivora
+        plantaCarnivora.onload = () =>{
+            ctx.drawImage(plantaCarnivora,535,185,100,100);
+        };
+
+        //bloques
+        ctx.beginPath();
+        ctx.fillStyle = '#f8652c';
+        ctx.fillRect(120,50,50,50);
+        ctx.strokeRect(120,50,50,50);
+        ctx.fillRect(170,50,50,50);
+        ctx.strokeRect(170,50,50,50);
+        ctx.stroke();
+
+        //bloque de abajo
+        ctx.beginPath();
+        ctx.fillStyle = '#f8652c';
+        ctx.fillRect(35,170,50,50);
+        ctx.strokeRect(35,170,50,50);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#f8652c';
+        ctx.fillRect(675,140,50,50);
+        ctx.strokeRect(675,140,50,50);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(685,177,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(715,177,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(685,152,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(715,152,2,0,2*Math.PI);
+        ctx.fill();
+
+        //puntitos del cubo de abajo
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(45,180,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(45,210,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(75,210,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(75,180,2,0,2*Math.PI);
+        ctx.fill();
+
+        //puntitos del cubo 1
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(130,60,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(130,90,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(160,90,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(160,60,2,0,2*Math.PI);
+        ctx.fill();
+
+        //puntitos del cubo 2
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(180,60,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(180,90,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(210,90,2,0,2*Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.arc(210,60,2,0,2*Math.PI);
+        ctx.fill();
+
+        //suelo
+        let sueloX = 30, sueloY = 420;
+
+        for(let i = 0; i < 4; i++){
+            for(let j = 0; j < 25; j++){
+                ctx.beginPath();
+                ctx.fillStyle = '#c5721b';
+                ctx.strokeStyle = '#50361b';
+                ctx.fillRect(sueloX,sueloY,30,30);
+                ctx.strokeRect(sueloX,sueloY,30,30);
+                ctx.stroke();
+                sueloX+=30;
+            }
+            sueloY+=30;
+            sueloX = 30;
+        }
+
+        //arbusto
+        ctx.beginPath();
+        ctx.fillStyle = '#38b62d';
+        ctx.strokeStyle = '#000';
+        ctx.arc(80,405,30,3,-2);
+        ctx.arc(100,385,25,3.5,-0.7);
+        ctx.arc(120,394,25,4.5,0.5);
+        ctx.fill();
+        ctx.stroke();
+
+        //sombra rectangulo azul
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(340,210,150,210);
+
+        //rectángulo azul
+        ctx.beginPath();
+        ctx.fillStyle = '#308cfa';
+        ctx.strokeStyle = '#000';
+        ctx.fillRect(310,180,150,230);
+        ctx.strokeRect(310,180,150,230);
+        ctx.stroke();  
+    
+        //sombra rectangulo rosa
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(275,280,100,140);   
+
+        //rectangulos grandes - rectangulo rosa
+        ctx.beginPath();
+        ctx.fillStyle = '#ffb3b3';
+        ctx.strokeStyle = '#000';
+        ctx.fillRect(200,260,150,150);
+        ctx.strokeRect(200,260,150,150);
+        ctx.stroke();    
+
+        //rectangulo verde
+        ctx.beginPath();
+        ctx.fillStyle = '#47fa7f';
+        ctx.strokeStyle = '#000';
+        ctx.fillRect(680,260,150,150);
+        ctx.strokeRect(680,260,150,150);
+        ctx.stroke();
+
+        //tubo
+        const gradient = ctx.createLinearGradient(150, 10, 100, 250);
+
+        gradient.addColorStop(0.5, '#48f97f');
+        gradient.addColorStop(0.8, '#33cb62');
+        gradient.addColorStop(1, '#16a141');
+
+        ctx.beginPath();
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = '#000';
+        ctx.fillRect(540, 300, 90, 120);
+        ctx.strokeRect(540, 300, 90, 120);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillRect(530, 250, 110, 50);
+        ctx.strokeRect(530, 250, 110, 50);
+        ctx.stroke();
+
+        //parte del piso
+        ctx.beginPath();
+        ctx.fillStyle = '#e37f16';
+        ctx.fillRect(30,405,720,15);
+
+        //tornillos de los rectángulos
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(205,270,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(210,265,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(220,270,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(210,280,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(210,280);
+        ctx.lineTo(220,270);
+        ctx.stroke();
+
+        //tornillo 2
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(315,270,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(320,265,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(330,270,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(320,280,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(320,280);
+        ctx.lineTo(330,270);
+        ctx.stroke();
+
+        //tornillo 3
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(315,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(320,375,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(330,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(320,390,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(320,390);
+        ctx.lineTo(330,380);
+        ctx.stroke();
+
+        //tornillo 4
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(205,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(210,375,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(220,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(210,390,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(210,390);
+        ctx.lineTo(220,380);
+        ctx.stroke();
+
+        //tornillo rectangulo azul
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(320,200,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(325,195,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(335,200,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(325,210,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(325,210);
+        ctx.lineTo(335,200);
+        ctx.stroke();
+
+        //tornillo 2
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(420,200,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(425,195,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(435,200,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(425,210,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(425,210);
+        ctx.lineTo(435,200);
+        ctx.stroke();
+
+        //tornillo 3
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(420,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(425,375,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(435,380,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(425,390,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(425,390);
+        ctx.lineTo(435,380);
+        ctx.stroke();
+
+        //tornillo rectangulo verde
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(690,275,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(695,270,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(705,275,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(695,285,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(695,285);
+        ctx.lineTo(705,275);
+        ctx.stroke();
+
+        //tornillo 2
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(690,375,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(695,370,10,4);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(705,375,4,10);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#000';
+        ctx.fillRect(695,385,10,4);
+
+        ctx.beginPath();
+        ctx.moveTo(695,385);
+        ctx.lineTo(705,375);
+        ctx.stroke();
+
+        mario.onload = () => {
+            ctx.drawImage(mario, 360, 331, 80, 80);
+        };
+    </script>
+</body>
+</html>
