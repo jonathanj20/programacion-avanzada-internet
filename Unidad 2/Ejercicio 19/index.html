@@ -24,7 +24,7 @@
         let t_x = 50, t_y=50, t_w=10, t_h=5;
         let oldX = 0, oldY = 0, direccionActual = '', score = 0;
         let arregloMuros = [];
-        let pause = false;
+        let pause = false, velocidad = 3;
 
         class Rectagulo{
             constructor(posicionX, posicionY, ancho ,alto){
@@ -87,22 +87,22 @@
                 
                 switch (dir) {
                     case 39:
-                        x += 3;
+                        x += velocidad;
                         if (x > 550) { x = -50; };
                         //derecha
                         break;
                     case 37:
-                        x -= 3;
+                        x -= velocidad;
                         if (x < -50) { x = 550; };
                         //izquierda
                         break;
                     case 38:
-                        y -= 3;
+                        y -= velocidad;
                         if (y < -50) { y = 550; };
                         //arriba
                         break;
                     case 40:
-                        y += 3;
+                        y += velocidad;
                         if (y > 550) { y = -50; };
                         //abajo
                         break;
@@ -166,6 +166,7 @@
                     t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
                     t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
                     score+=10;
+                    velocidad+=1;
                 }
             }
         }
