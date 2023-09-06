@@ -20,11 +20,17 @@
     <script>
         const canvas = document.getElementById('miCanvas');
         const ctx = canvas.getContext('2d');
-        let x = 20, y = 20, dir = 0, w=20, h=10;
-        let t_x = 50, t_y=50, t_w=10, t_h=5;
+        let x = 20, y = 20, dir = 0, w=25, h=20;
+        let t_x = 50, t_y=50, t_w=15, t_h=10;
         let oldX = 0, oldY = 0, direccionActual = '', score = 0;
         let arregloMuros = [];
         let pause = false, velocidad = 3;
+        let image = new Image(), taco = new Image();
+        let sonido = new Audio();
+
+        image.src = 'mexico.png';
+        taco.src = 'tacos.png';
+        sonido.src = 'mario-coin.mp3';
 
         class Rectagulo{
             constructor(posicionX, posicionY, ancho ,alto){
@@ -136,11 +142,10 @@
 
         function repaint() {
             if(!pause){
+                //sombrero mexicano
                 ctx.fillStyle = 'white';
                 ctx.fillRect(0, 0, 600, 600);
-                ctx.fillStyle = getRandomColor();
-                ctx.fillRect(x, y, w, h);
-                ctx.strokeRect(x, y, w, h);
+                ctx.drawImage(image, x, y, w, h);
 
                 //score
                 ctx.beginPath();
@@ -159,25 +164,17 @@
                     }
                 }
 
-                ctx.fillStyle = '#000';
-                ctx.fillRect(t_x,t_y,t_w,t_h);
+                //taco
+                ctx.drawImage(taco, t_x, t_y, t_w, t_h);
 
                 if(x < t_x + t_w &&  x + w > t_x && y < t_y + t_h && y + h > t_y){ 
+                    sonido.play();
                     t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
                     t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
                     score+=10;
                     velocidad+=1;
                 }
             }
-        }
-
-        function getRandomColor() {
-            const r = Math.floor(Math.random() * 256); // Valor de rojo entre 0 y 255
-            const g = Math.floor(Math.random() * 256); // Valor de verde entre 0 y 255
-            const b = Math.floor(Math.random() * 256); // Valor de azul entre 0 y 255
-            const alpha = 0.9; // Opacidad fija, ajusta este valor según lo que necesites
-
-            return `rgba(${r},${g},${b},${alpha})`;
         }
 
         window.requestAnimationFrame = (function () {
