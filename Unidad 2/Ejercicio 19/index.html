@@ -22,7 +22,9 @@
         const ctx = canvas.getContext('2d');
         let x = 20, y = 20, dir = 0, w=20, h=10;
         let t_x = 50, t_y=50, t_w=10, t_h=5;
+        let oldX = 0, oldY = 0, direccionActual = '', score = 0;
         let arregloMuros = [];
+        let pause = false;
 
         class Rectagulo{
             constructor(posicionX, posicionY, ancho ,alto){
@@ -53,10 +55,9 @@
 
         arregloMuros.push(muro1);
         arregloMuros.push(muro2);
-
-        console.log(arregloMuros);
         
         document.addEventListener("keydown", (e) => {
+            console.log(e);
             switch (e.keyCode) {
                 case 39:
                     dir = e.keyCode;
@@ -74,43 +75,59 @@
                     dir = e.keyCode;
                     //abajo
                     break;
+                case 32:
+                    pause = !pause;
+                    break;
             }
         });
 
         function update() {
-            switch (dir) {
-                case 39:
-                    x += 3;
-                    if (x > 550) { x = -50; };
-                    //derecha
-                    break;
-                case 37:
-                    x -= 3;
-                    if (x < -50) { x = 550; };
-                    //izquierda
-                    break;
-                case 38:
-                    y -= 3;
-                    if (y < -50) { y = 550; };
-                    //arriba
-                    break;
-                case 40:
-                    y += 3;
-                    if (y > 550) { y = -50; };
-                    //abajo
-                    break;
-            }
-            let tocanMuros = false;
-
-            for (let i = 0; i < arregloMuros.length; i++) {
-                if(arregloMuros[i].verificarColision()){
-                    tocanMuros = true;
+            if(!pause){
+                direccionActual = dir;
+                
+                switch (dir) {
+                    case 39:
+                        x += 3;
+                        if (x > 550) { x = -50; };
+                        //derecha
+                        break;
+                    case 37:
+                        x -= 3;
+                        if (x < -50) { x = 550; };
+                        //izquierda
+                        break;
+                    case 38:
+                        y -= 3;
+                        if (y < -50) { y = 550; };
+                        //arriba
+                        break;
+                    case 40:
+                        y += 3;
+                        if (y > 550) { y = -50; };
+                        //abajo
+                        break;
                 } 
-            }
+                
+                let tocanMuros = false;
 
-            if(!tocanMuros){
-                oldX = x;
-                oldY = y;
+                for (let i = 0; i < arregloMuros.length; i++) {
+                    if(arregloMuros[i].verificarColision()){
+                        tocanMuros = true;
+                    } 
+                }
+
+                if(!tocanMuros){
+                    oldX = x;
+                    oldY = y;
+                }
+            } else {
+                dir = direccionActual;
+                ctx.fillStyle = 'rgba(192, 194, 196, .1)';
+                ctx.fillRect(0, 0, 600, 600);
+                ctx.beginPath();
+                ctx.fillStyle = '#000';
+                ctx.font = '15px Arial';
+                ctx.fillText('P A U S E', 110, 77);
             }
 
             repaint();
@@ -118,29 +135,38 @@
         }
 
         function repaint() {
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, 600, 600);
-            ctx.fillStyle = getRandomColor();
-            ctx.fillRect(x, y, w, h);
-            ctx.strokeRect(x, y, w, h);
+            if(!pause){
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, 600, 600);
+                ctx.fillStyle = getRandomColor();
+                ctx.fillRect(x, y, w, h);
+                ctx.strokeRect(x, y, w, h);
 
-            muro1.pintarRectangulo();
-            muro2.pintarRectangulo();
+                //score
+                ctx.beginPath();
+                ctx.fillStyle = '#000';
+                ctx.font = '10px Arial';
+                ctx.fillText('Score: '+score, 20, 10);
 
-             for (let i = 0; i < arregloMuros.length; i++) {
-                 if(arregloMuros[i].verificarColision()){
-                    x=oldX;
-                    y=oldY;
-                    break;
+                muro1.pintarRectangulo();
+                muro2.pintarRectangulo();
+
+                for (let i = 0; i < arregloMuros.length; i++) {
+                    if(arregloMuros[i].verificarColision()){
+                        x=oldX;
+                        y=oldY;
+                        break;
+                    }
                 }
-            }
 
-            ctx.fillStyle = '#000';
-            ctx.fillRect(t_x,t_y,t_w,t_h);
+                ctx.fillStyle = '#000';
+                ctx.fillRect(t_x,t_y,t_w,t_h);
 
-            if(x < t_x + t_w &&  x + w > t_x && y < t_y + t_h && y + h > t_y){ 
-                t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
-                t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
+                if(x < t_x + t_w &&  x + w > t_x && y < t_y + t_h && y + h > t_y){ 
+                    t_x = Math.floor(Math.random() * (290 - 0 + 1) + 0);
+                    t_y = Math.floor(Math.random() * (145 - 0 + 1) + 0);
+                    score+=10;
+                }
             }
         }
 
@@ -163,11 +189,6 @@
         }());
 
         window.requestAnimationFrame(update);
-
-        function pintarCuadro(){
-            ctx.fillStyle = '#000';
-            ctx.fillRect(Math.floor(Math.random() * (290 - 0 + 1) + 0),Math.floor(Math.random() * (145 - 0 + 1) + 0),10,5);
-        }
     </script>
 </body>
 </html>
