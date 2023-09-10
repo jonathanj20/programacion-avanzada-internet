@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--v-model sirve para vincular un elemento html con una propiedad del objeto app en javascript-->
+    <div id="app">
+        <p>hola {{nombre}}</p>
+        <input type="text" v-model="nombre">
+        <input type="text" v-model="numero1">
+        <input type="text" v-model="numero2">
+        <button v-on:click="suma">Sumar</button>
+        <p>{{resultado}}</p>
+    </div>
+    <style>
+        input{
+            display: block;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                numero1: 0,
+                numero2: 0,
+                resultado: 0,
+                nombre: ''
+            },
+            methods: {
+                suma: function () {
+                    this.resultado = parseInt(this.numero1) + parseInt(this.numero2);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
