@@ -14,6 +14,17 @@
         <input type="text" v-model="numero2">
         <button v-on:click="suma">Sumar</button>
         <p>{{resultado}}</p>
+        <hr>
+        <form action="">
+            <input type="text" placeholder="nombre" v-model="username">
+            <input type="text" placeholder="Apellido" v-model="lastName">
+            <button type="button" v-on:click="addPerson">Save data</button>
+        </form>
+        <ul>
+            <li v-for="item in persons">
+                {{ item.name }} - {{ item.lastName }}
+            </li>
+        </ul>
     </div>
     <style>
         input{
@@ -28,11 +39,23 @@
                 numero1: 0,
                 numero2: 0,
                 resultado: 0,
-                nombre: ''
+                nombre: '',
+                username: '',
+                lastName: '',
+                persons: []
             },
             methods: {
                 suma: function () {
                     this.resultado = parseInt(this.numero1) + parseInt(this.numero2);
+                },
+                addPerson() {
+                    const person = {
+                        name:this.username,
+                        lastName: this.lastName
+                    };
+                    console.log(this.username);
+                    console.log(this.lastName);
+                    this.persons.push(person);
                 }
             }
         });
