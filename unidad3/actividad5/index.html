@@ -8,7 +8,7 @@
 <body>
     <!--v-model sirve para vincular un elemento html con una propiedad del objeto app en javascript-->
     <div id="app">
-        <p>hola {{nombre}}</p>
+        <!--<p>hola {{nombre}}</p>
         <input type="text" v-model="nombre">
         <input type="text" v-model="numero1">
         <input type="text" v-model="numero2">
@@ -24,7 +24,14 @@
             <li v-for="item in persons">
                 {{ item.name }} - {{ item.lastName }}
             </li>
-        </ul>
+        </ul>-->
+        <form action="">
+            <label for="email">email</label>
+            <input type="text" id="email" placeholder="write here" v-model="email">
+            <label for="password">password</label>
+            <input type="password" id="password" placeholder="write here" v-model="password">
+            <button @click="login" type="button">Access</button>
+        </form>
     </div>
     <style>
         input{
@@ -34,6 +41,38 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script>
         const app = new Vue({
+            el: '#app',
+            data: {
+                users: '',
+                email: '',
+                password: ''
+            },
+            methods: {
+                login: async function(){
+                    //1.- traer los datos
+                    const response = await fetch("users.json");
+                    const users = await response.json();
+                    
+                    let login = false;
+
+                    //2.- recorrer los datos
+                    users.forEach(user => {
+                        //3.- comprobar si el usuario existe
+                        if(this.email == user.email){
+                            if(this.password == user.password){
+                                alert('bienvenido '+user.name);
+                                login = true;
+                            }
+                        }
+                    });
+
+                    if(!login){
+                        alert('Verifique su información');
+                    }
+                }
+            }
+        });
+        /*const app = new Vue({
             el: '#app',
             data: {
                 numero1: 0,
@@ -58,7 +97,7 @@
                     this.persons.push(person);
                 }
             }
-        });
+        });*/
     </script>
 </body>
 </html>
