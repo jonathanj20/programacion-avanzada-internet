@@ -25,17 +25,53 @@
                 {{ item.name }} - {{ item.lastName }}
             </li>
         </ul>-->
+        <h2>Access Data</h2>
         <form action="">
-            <label for="email">email</label>
-            <input type="text" id="email" placeholder="write here" v-model="email">
+            <label for="username">username</label>
+            <input type="text" id="username" placeholder="write here" v-model="username">
             <label for="password">password</label>
             <input type="password" id="password" placeholder="write here" v-model="password">
             <button @click="login" type="button">Access</button>
         </form>
+        
+        <table v-if="accedio">
+            <tr class="header">
+                <td class="header__td">Nombre</td>
+                <td class="header__td">Apellido</td>
+                <td class="header__td">Email</td>
+                <td class="header__td">ID</td>
+                <td class="header__td">Avatar</td>
+            </tr>
+            <tr v-for="user in arrayUsers">
+                <td class="datos">{{ user.name }}</td>
+                <td class="datos">{{ user.lastname }}</td>
+                <td class="datos">{{ user.email }}</td>
+                <td class="datos">{{user.role_id}} </td>
+                <td class="datos">{{user.avatar}}</td>
+            </tr>
+        </table>
     </div>
     <style>
         input{
             display: block;
+        }
+
+        td{
+            padding: .3em;
+            border: 1px solid yellow;
+            background-color: #ac4df2;
+        }
+
+        table{
+            border-collapse: collapse;
+        }
+
+        .header__td{
+            background-color: yellow;
+        }
+
+        .datos{
+            color: white;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -43,30 +79,32 @@
         const app = new Vue({
             el: '#app',
             data: {
-                users: '',
                 email: '',
-                password: ''
+                username: '',
+                password: '',
+                accedio: false,
+                arrayUsers: []
             },
             methods: {
                 login: async function(){
                     //1.- traer los datos
                     const response = await fetch("users.json");
                     const users = await response.json();
-                    
-                    let login = false;
 
                     //2.- recorrer los datos
                     users.forEach(user => {
                         //3.- comprobar si el usuario existe
-                        if(this.email == user.email){
+                        if(this.username == user.name){
                             if(this.password == user.password){
                                 alert('bienvenido '+user.name);
-                                login = true;
+                                this.accedio = true;
                             }
                         }
+
+                        this.arrayUsers.push(user);
                     });
 
-                    if(!login){
+                    if(!this.accedio){
                         alert('Verifique su información');
                     }
                 }

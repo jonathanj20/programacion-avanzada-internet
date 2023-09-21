@@ -12,7 +12,87 @@
         "lastname": "Fernandez",
         "email": "federico@uabcs.mx",
         "password": "1234",
-        "role_id": 1,
+        "role_id": 2,
+        "avatar": ""
+    },
+    {
+        "name": "Juan",
+        "lastname": "Pérez",
+        "email": "juanperez@uabcs.mx",
+        "password": "1234",
+        "role_id": 3,
+        "avatar": ""
+    },
+    {
+        "name": "María",
+        "lastname": "González",
+        "email": "maria@uabcs.mx",
+        "password": "1234",
+        "role_id": 4,
+        "avatar": ""
+    },
+    {
+        "name": "Carlos",
+        "lastname": "Rodríguez",
+        "email": "carloss@uabcs.mx",
+        "password": "1234",
+        "role_id": 5,
+        "avatar": ""
+    },
+    {
+        "name": "Ana",
+        "lastname": "Martínez",
+        "email": "anamtz@uabcs.mx",
+        "password": "1234",
+        "role_id": 6,
+        "avatar": ""
+    },
+    {
+        "name": "Luís",
+        "lastname": "López",
+        "email": "luisl@uabcs.mx",
+        "password": "1234",
+        "role_id": 7,
+        "avatar": ""
+    },
+    {
+        "name": "Laura",
+        "lastname": "Sánchez",
+        "email": "laurass@uabcs.mx",
+        "password": "1234",
+        "role_id": 8,
+        "avatar": ""
+    },
+    {
+        "name": "Diego",
+        "lastname": "Fernandez",
+        "email": "diego@uabcs.mx",
+        "password": "1234",
+        "role_id": 9,
+        "avatar": ""
+    },
+    {
+        "name": "Isabel",
+        "lastname": "Torres",
+        "email": "isabelt@uabcs.mx",
+        "password": "1234",
+        "role_id": 10,
+        "avatar": ""
+    },
+    {
+        "name": "Miguel",
+        "lastname": "Ramírez",
+        "email": "miguelr@uabcs.mx",
+        "password": "1234",
+        "role_id": 11,
+        "avatar": ""
+    },
+    {
+        "name": "Sofía",
+        "lastname": "Reyes",
+        "email": "sofiar@uabcs.mx",
+        "password": "1234",
+        "role_id": 12,
         "avatar": ""
     }
 ]
