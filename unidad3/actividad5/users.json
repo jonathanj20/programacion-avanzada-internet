@@ -5,7 +5,8 @@
         "email": "jonathanpossada@gmail.com",
         "password": "1234",
         "role_id": 1,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Federico",
@@ -13,7 +14,8 @@
         "email": "federico@uabcs.mx",
         "password": "1234",
         "role_id": 2,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Juan",
@@ -21,7 +23,8 @@
         "email": "juanperez@uabcs.mx",
         "password": "1234",
         "role_id": 3,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "María",
@@ -29,7 +32,8 @@
         "email": "maria@uabcs.mx",
         "password": "1234",
         "role_id": 4,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Carlos",
@@ -37,7 +41,8 @@
         "email": "carloss@uabcs.mx",
         "password": "1234",
         "role_id": 5,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Ana",
@@ -45,7 +50,8 @@
         "email": "anamtz@uabcs.mx",
         "password": "1234",
         "role_id": 6,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Luís",
@@ -53,7 +59,8 @@
         "email": "luisl@uabcs.mx",
         "password": "1234",
         "role_id": 7,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Laura",
@@ -61,7 +68,8 @@
         "email": "laurass@uabcs.mx",
         "password": "1234",
         "role_id": 8,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Diego",
@@ -69,7 +77,8 @@
         "email": "diego@uabcs.mx",
         "password": "1234",
         "role_id": 9,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Isabel",
@@ -77,7 +86,8 @@
         "email": "isabelt@uabcs.mx",
         "password": "1234",
         "role_id": 10,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Miguel",
@@ -85,7 +95,8 @@
         "email": "miguelr@uabcs.mx",
         "password": "1234",
         "role_id": 11,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     },
     {
         "name": "Sofía",
@@ -93,6 +104,7 @@
         "email": "sofiar@uabcs.mx",
         "password": "1234",
         "role_id": 12,
-        "avatar": ""
+        "avatar": "",
+        "editable": false
     }
 ]

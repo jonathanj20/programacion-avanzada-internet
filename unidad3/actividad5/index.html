@@ -28,26 +28,31 @@
         <h2>Access Data</h2>
         <form action="">
             <label for="username">username</label>
-            <input type="text" id="username" placeholder="write here" v-model="username">
+            <input type="text" id="username" placeholder="write here" v-model="username" id="username">
             <label for="password">password</label>
-            <input type="password" id="password" placeholder="write here" v-model="password">
+            <input type="password" id="password" placeholder="write here" v-model="password" id="password">
             <button @click="login" type="button">Access</button>
         </form>
         
+        <!--v:bind sirve para modificar el valor de un atributo html dinámicamente-->
         <table v-if="accedio">
+            <button id="btnAgregar" v-if="accedio" v-on:click="add">Add</button>
             <tr class="header">
                 <td class="header__td">Nombre</td>
                 <td class="header__td">Apellido</td>
                 <td class="header__td">Email</td>
                 <td class="header__td">ID</td>
-                <td class="header__td">Avatar</td>
+                <td class="header__td">actions</td>
             </tr>
             <tr v-for="user in arrayUsers">
-                <td class="datos">{{ user.name }}</td>
-                <td class="datos">{{ user.lastname }}</td>
-                <td class="datos">{{ user.email }}</td>
-                <td class="datos">{{user.role_id}} </td>
-                <td class="datos">{{user.avatar}}</td>
+                <td class="datos" :contenteditable="user.editable">{{ user.name }}</td>
+                <td class="datos" :contenteditable="user.editable">{{ user.lastname }}</td>
+                <td class="datos" :contenteditable="user.editable">{{ user.email }}</td>
+                <td class="datos" :ontenteditable="user.editable">{{ user.role_id }} </td>
+                <td class="datos">
+                    <button id="btnEdit" v-on:click="edit">Edit</button>
+                    <button id="btnRemove" v-on:click="remove">Remove</button>
+                </td>
             </tr>
         </table>
     </div>
@@ -83,7 +88,8 @@
                 username: '',
                 password: '',
                 accedio: false,
-                arrayUsers: []
+                arrayUsers: [],
+                role_id: 12
             },
             methods: {
                 login: async function(){
@@ -106,6 +112,49 @@
 
                     if(!this.accedio){
                         alert('Verifique su información');
+                    }
+                },
+                add: function() {
+                    const nombre=prompt("Ingresa el nombre");
+                    const apellido=prompt("Ingresa el apellido");
+                    const correo=prompt("Ingresa el email");
+
+                    const usuario = {
+                        name: nombre,
+                        lastname: apellido,
+                        email: correo,
+                        role_id: this.role_id+=1
+                    }
+
+                    this.arrayUsers.push(usuario);
+                },
+                remove: function(){
+                    const usuarioAEliminar = parseInt(prompt('Ingresa el id del usuario a eliminar'));
+
+                    if(usuarioAEliminar < 0 || usuarioAEliminar > this.arrayUsers[this.arrayUsers.length-1].role_id){
+                        alert(`El id ${usuarioAEliminar} no existe`);
+                    } else {
+                        //se busca el índice del usuario del que se va a eliminar
+                        const index = this.arrayUsers.findIndex(user => user.role_id === usuarioAEliminar);
+
+                        //se elimina el usuario a partir del indice encontrado
+                        this.arrayUsers.splice(index, 1);
+                    }
+                },
+                edit: function(){
+                    const usuarioAEditar = parseInt(prompt('Ingresa el id del usuario a editar'));
+
+                    if(usuarioAEditar < 0 || usuarioAEditar > this.arrayUsers[this.arrayUsers.length-1].role_id){
+                        alert(`El id ${usuarioAEditar} no existe`);
+                    } else {
+                        //obtengo el indice del usuario del que se va a editar
+                        const index = this.arrayUsers.findIndex(user => user.role_id === usuarioAEditar);
+
+                        this.arrayUsers.forEach((user, indice) => {
+                            if(indice === index){
+                                user.editable = !user.editable;
+                            }
+                        });
                     }
                 }
             }
