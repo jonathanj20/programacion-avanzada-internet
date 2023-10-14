@@ -1,0 +1,49 @@
+@bg-blue: #356fe3;
+@color-white: #fff;
+@role-colors: red, orange, pink, green, violet;
+
+body{
+    background-color: @bg-blue;
+}
+
+.color_Letra{
+    color: @color-white;
+}
+
+h1{
+    .color_Letra();
+    text-align: center;
+}
+
+form{
+    width: 30%;
+    margin: auto;
+    div{
+        input{
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #000;
+            background: transparent;
+        }
+        label{
+            .color_Letra();
+        }
+        ul{ 
+            li:nth-child(1) {
+                background-color: extract(@role-colors, 1); 
+            }
+            li:nth-child(2) {
+                background-color: extract(@role-colors, 2); 
+            }
+            li:nth-child(3) {
+                background-color: extract(@role-colors, 3); 
+            }
+            li:nth-child(4) {
+                background-color: extract(@role-colors, 4); 
+            }
+            li:nth-child(5) {
+                background-color: extract(@role-colors, 5); 
+            }
+        }
+    }
+}

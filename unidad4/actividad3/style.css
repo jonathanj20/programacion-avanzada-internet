@@ -1,0 +1,38 @@
+body {
+  background-color: #356fe3;
+}
+.color_Letra {
+  color: #fff;
+}
+h1 {
+  color: #fff;
+  text-align: center;
+}
+form {
+  width: 30%;
+  margin: auto;
+}
+form div input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  background: transparent;
+}
+form div label {
+  color: #fff;
+}
+form div ul li:nth-child(1) {
+  background-color: red;
+}
+form div ul li:nth-child(2) {
+  background-color: orange;
+}
+form div ul li:nth-child(3) {
+  background-color: pink;
+}
+form div ul li:nth-child(4) {
+  background-color: green;
+}
+form div ul li:nth-child(5) {
+  background-color: violet;
+}
