@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,6 @@ Route::get('/operacion/{tipoOperacion?}/{numero1}/{numero2}', function ($tipoOpe
 Route::get('/greeting/{nombre?}', function($nombre = 'Jesús'){
     return view('saludo', ['nombre' => $nombre]);
 })->where(['nombre' => '[a-zA-Z]+']);
+
+/**Saludo desde la vista con un controlador */
+Route::get('/user', [UserController::class, 'index']);
