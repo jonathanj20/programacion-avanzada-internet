@@ -34,7 +34,7 @@
             <button @click="login" type="button">Access</button>
         </form>
         
-        <!--v:bind sirve para modificar el valor de un atributo html dinámicamente-->
+        <!--v:bind sirve para modificar el valor de un atributo html dinámicamente (se abrevia con :atributo)-->
         <table v-if="accedio">
             <button id="btnAgregar" v-if="accedio" v-on:click="add">Add</button>
             <tr class="header">
