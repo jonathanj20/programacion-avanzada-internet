@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <canvas id="miCanvas" width="600" height="600"></canvas>
+    <img src="imagen.png" id="img">
+    <style>
+        #miCanvas{
+            background-color: #b3bdd5;
+            margin: 10px;
+        }
+
+        #img{
+            display: none;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        //creamos el gradiante
+        const grd = ctx.createLinearGradient(0, 75, 300, 0);
+        grd.addColorStop(0.2, '#4779f2');
+        grd.addColorStop(0.5, '#f2ec47');
+        grd.addColorStop(1, "#47f2c5");
+
+        //dibujamos el rectangulo
+        ctx.fillStyle = grd;
+        ctx.fillRect(40,140,300,150);
+
+        /**Actividad 8. createRadialGradient*/
+        const grd2 = ctx.createRadialGradient(215,420,10,150,370,200);
+        grd2.addColorStop(0.2, '#4779f2');
+        grd2.addColorStop(0.5, '#f2ec47');
+        grd2.addColorStop(1, "#47f2c5");
+
+        ctx.fillStyle=grd2;
+        ctx.fillRect(40,340,300,150); 
+    
+        /*Actividad 9. drawImage*/
+        const img = document.getElementById('img');
+
+        /*el evento onload ejecuta una función cuando la página termine de cargar,
+        asegurando esto de que la imagen se dibuje en el canvas cuando haya cargado*/
+        img.onload = function(){
+            ctx.drawImage(img, 340, 180);  
+        }        
+    </script>
+</body>
+</html>

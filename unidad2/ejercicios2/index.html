@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fillrect y fillStyle</title>
+</head>
+
+<body>
+    <canvas width="600" height="500" id="miCanvas">Este elemento no está permitido en tu navegador</canvas>
+    
+    <style>
+        #miCanvas {
+            border: 2px solid #000;
+            margin: 3em;
+        }
+    </style>
+
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d')
+
+        ctx.fillStyle = '#5584f3';
+        ctx.fillRect(30, 30, 100, 100);
+
+        ctx.fillStyle = '#eb3d3d';
+        ctx.fillRect(110, 110, 100, 100);
+
+        ctx.fillStyle = 'rgba(255, 116, 254, .9)';
+        ctx.fillRect(190, 190, 100, 100);
+
+        /*moveTo significa el punto de origen donde vamos a pintar*/
+        ctx.beginPath();
+        ctx.moveTo(400,100);
+        ctx.lineTo(300, 300);
+        ctx.lineTo(500, 300);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(500,300)
+        ctx.lineTo(300,300);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(400,100);
+        ctx.lineTo(500, 300);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(400, 10);
+        ctx.lineTo(550, 300);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(400, 400, 50,0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(200, 400, 50,0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        //prueba de commit
+        console.log('prueba');
+
+        //segunda prueba de commit
+        console.log('segunda prueba');
+    </script>
+</body>
+
+</html>
+</body>
+</html>

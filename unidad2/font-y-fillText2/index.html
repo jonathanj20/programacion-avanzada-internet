@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="400" height="400"></canvas>
+
+    <style>
+        #miCanvas{
+            border: 1px solid #000;
+            margin: 10px;
+            background-color: #b3bdd5;
+        }
+    </style>
+
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        //primer texto fill normal
+        ctx.fillStyle = 'white';
+        ctx.font = '50px Arial';
+        ctx.fillText('Hola mundo', 48, 196);
+
+        //segundo texto stroke
+        ctx.strokeStyle = 'green';
+        ctx.font = "50px Arial";
+        ctx.strokeText('Hola mundo', 50,200);
+    </script>
+</body>
+</html>
